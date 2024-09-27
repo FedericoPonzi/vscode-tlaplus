@@ -35,7 +35,7 @@ const TLA_CMODS_LIB_NAME = 'CommunityModules-deps.jar';
 const TLA_TOOLS_LIB_NAME = 'tla2tools.jar';
 const TLA_TOOLS_LIB_NAME_END_UNIX = '/' + TLA_TOOLS_LIB_NAME;
 const TLA_TOOLS_LIB_NAME_END_WIN = '\\' + TLA_TOOLS_LIB_NAME;
-const toolsJarPath = path.resolve(__dirname, '../tools/' + TLA_TOOLS_LIB_NAME);
+export const toolsJarPath = path.resolve(__dirname, '../tools/' + TLA_TOOLS_LIB_NAME);
 const cmodsJarPath = path.resolve(__dirname, '../tools/' + TLA_CMODS_LIB_NAME);
 const javaCmd = 'java' + (process.platform === 'win32' ? '.exe' : '');
 const javaVersionChannel = new ToolOutputChannel('TLA+ Java version');
@@ -243,6 +243,7 @@ async function runTool(
     const args = buildJavaOptions(cfgOptions, toolsJarPath).concat(javaOptions);
     args.push(toolName);
     toolOptions.forEach(opt => args.push(opt));
+<<<<<<< HEAD
     return await new Promise<ToolProcessInfo>((resolve, reject) => {
         const proc = spawn(javaPath, args, { cwd: path.dirname(filePath) });
 
@@ -267,6 +268,12 @@ async function runTool(
         proc.once('error', onError);
         proc.once('spawn', onSpawn);
     });
+=======
+    const proc = spawn(javaPath, args, { cwd: path.dirname(filePath) });
+    addReturnCodeHandler(proc, toolName);
+    console.log(buildCommandLine(javaPath, args));
+    return new ToolProcessInfo(buildCommandLine(javaPath, args), proc);
+>>>>>>> 3dc67f9 (tmp)
 }
 
 export function moduleSearchPaths(): string[] {

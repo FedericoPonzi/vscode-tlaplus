@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { createHash } from 'crypto';
 import { spawn } from 'child_process';
+import * as paths from './paths';
 
 import {
     CMD_CHECK_MODEL_RUN, CMD_CHECK_MODEL_STOP, CMD_CHECK_MODEL_DISPLAY, CMD_SHOW_TLC_OUTPUT,
@@ -37,12 +38,16 @@ import { TlapsClient } from './tlaps';
 import { CurrentProofStepWebviewViewProvider } from './panels/currentProofStepWebviewViewProvider';
 import { moduleSearchPaths } from './paths';
 import { ModuleSearchPathsTreeDataProvider } from './panels/moduleSearchPathsTreeDataProvider';
+<<<<<<< HEAD
 import { CheckModuleTool, ExploreModuleTool, SmokeModuleTool } from './lm/TLCTool';
 import { ParseModuleTool, SymbolProviderTool } from './lm/SANYTool';
 import { MCPServer } from './lm/MCPServer';
 import { TlcCoverageDecorationProvider } from './tlcCoverage';
 import { registerCoverageCommands } from './commands/toggleCoverage';
 import { acquireJarFileSystemProvider } from './JarFileSystemProvider';
+=======
+import { toolsJarPath } from './tla2tools';
+>>>>>>> 3dc67f9 (tmp)
 
 const TLAPLUS_FILE_SELECTOR: vscode.DocumentSelector = { scheme: 'file', language: LANG_TLAPLUS };
 const TLAPLUS_CFG_FILE_SELECTOR: vscode.DocumentSelector = { scheme: 'file', language: LANG_TLAPLUS_CFG };
@@ -319,10 +324,10 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                     if(document.uri.scheme === "file") {
                         tempInputPath = document.uri.fsPath;
                     }
-                    // Execute the Java formatter
 
+                    var spawnArgs = ["-cp", toolsJarPath].concat(['-jar', '/home/fponzi/dev/tla+/tlaplus-formatter/build/libs/tlaplus-formatter.jar', '-v', 'ERROR', tempInputPath, tempInputPath]);
                     // Execute the Java formatter using spawn
-                    const javaProcess = spawn('java', ['-jar', '/home/fponzi/dev/tla+/tlaplus-formatter/build/libs/tlaplus-formatter.jar', '-v', 'ERROR', tempInputPath, tempInputPath]);
+                    const javaProcess = spawn('java', spawnArgs);
                     // Capture and log standard output
                     javaProcess.stdout.on('data', (data) => {
                         console.log(`STDOUT: ${data}`);
@@ -386,3 +391,43 @@ export function deactivate() {
     }
     tlapsClient = undefined;
 }
+<<<<<<< HEAD
+=======
+
+async function showChangeLog(extPath: string) {
+    const pkgData = await readFile(`${extPath}${path.sep}package.json`);
+    const curVersion = JSON.parse(pkgData).version;
+    const prevFilePath = `${extPath}${path.sep}version`;
+    let prevVersion;
+    if (await exists(prevFilePath)) {
+        prevVersion = await readFile(prevFilePath);
+    }
+    if (getMajorMinor(curVersion) === getMajorMinor(prevVersion)) {
+        return;
+    }
+    await writeFile(prevFilePath, curVersion);
+    const showOpt = 'Show changelog';
+    const dismissOpt = 'Dismiss';
+    const opt = await vscode.window.showInformationMessage('TLA+ extension has been updated.', showOpt, dismissOpt);
+    if (opt === showOpt) {
+        vscode.commands.executeCommand('vscode.open', CHANGELOG_URL);
+    }
+}
+
+function getMajorMinor(version: string | undefined): string | undefined {
+    if (!version || version === '') {
+        return undefined;
+    }
+    const matches = /^(\d+.\d+)/g.exec(version);
+    return matches ? matches[1] : undefined;
+}
+
+function makeTlaLibraryJavaOpt(): string {   
+    const libPaths = paths.moduleSearchPaths.
+        getOtherPaths(paths.TLC).
+        filter(p => !p.startsWith('jar:')). // TODO: Support archive paths as well.
+        join(path.delimiter);
+    return '-DTLA-Library=' + libPaths;
+}
+
+>>>>>>> 3dc67f9 (tmp)
