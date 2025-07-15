@@ -742,9 +742,11 @@
         "watch": "npm run compile -- --watch",
         "pretest": "tsc -p ./",
         "test": "node ./out/tests/runTest.js",
-        "test:tlaplus-grammar": "vscode-tmgrammar-test ./tests/suite/languages/*.tla -g ./languages/tlaplus-grammar.json -g ./languages/pluscal-grammar.json"
+        "test:tlaplus-grammar": "vscode-tmgrammar-test ./tests/suite/languages/*.tla -g ./languages/tlaplus-grammar.json -g ./languages/pluscal-grammar.json",
+        "migration:capture-baseline": "npx ts-node .migration-temp/visual-tests/run-baseline-capture.ts"
     },
     "devDependencies": {
+        "@playwright/test": "^1.54.1",
         "@types/express": "^5.0.2",
         "@types/glob": "^8.1.0",
         "@types/mocha": "^10.0.1",
@@ -762,7 +764,9 @@
         "glob": "^8.1.0",
         "mocha": "^10.2.0",
         "node": "^22.0.0",
+        "playwright": "^1.54.1",
         "source-map-support": "^0.5.19",
+        "ts-node": "^10.9.2",
         "typescript": "^5.7.2",
         "vscode-tmgrammar-test": "^0.1.1"
     },
@@ -771,9 +775,10 @@
         "@microsoft/fast-components": "^2.30.6",
         "@microsoft/fast-react-wrapper": "^0.3.18",
         "@modelcontextprotocol/sdk": "^1.11.2",
+        "@vscode-elements/elements": "^1.17.0",
         "@vscode/codicons": "^0.0.33",
         "@vscode/debugadapter": "^1.63.0",
-        "@vscode/webview-ui-toolkit": "^1.2.2",
+        "@vscode/webview-ui-toolkit": "^1.4.0",
         "await-notify": "^1.0.1",
         "chart.js": "^4.4.1",
         "express": "^5.1.0",
