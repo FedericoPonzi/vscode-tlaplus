@@ -742,16 +742,9 @@
         "watch": "npm run compile -- --watch",
         "pretest": "tsc -p ./",
         "test": "node ./out/tests/runTest.js",
-        "test:tlaplus-grammar": "vscode-tmgrammar-test ./tests/suite/languages/*.tla -g ./languages/tlaplus-grammar.json -g ./languages/pluscal-grammar.json",
-        "test:visual-regression": "npx playwright test --config=playwright.visual-regression.config.ts",
-        "test:visual-regression:update": "npx playwright test --config=playwright.visual-regression.config.ts --update-snapshots",
-        "test:visual-regression:headed": "npx playwright test --config=playwright.visual-regression.config.ts --headed",
-        "test:visual-regression:debug": "npx playwright test --config=playwright.visual-regression.config.ts --debug",
-        "test:visual-regression:strict": "VISUAL_REGRESSION_TOLERANCE=0.05 npx playwright test --config=playwright.visual-regression.config.ts",
-        "test:visual-regression:lenient": "VISUAL_REGRESSION_TOLERANCE=1.0 npx playwright test --config=playwright.visual-regression.config.ts"
+        "test:tlaplus-grammar": "vscode-tmgrammar-test ./tests/suite/languages/*.tla -g ./languages/tlaplus-grammar.json -g ./languages/pluscal-grammar.json"
     },
     "devDependencies": {
-        "@playwright/test": "^1.54.1",
         "@types/express": "^5.0.2",
         "@types/glob": "^8.1.0",
         "@types/mocha": "^10.0.1",
@@ -769,7 +762,6 @@
         "glob": "^8.1.0",
         "mocha": "^10.2.0",
         "node": "^22.0.0",
-        "playwright": "^1.54.1",
         "source-map-support": "^0.5.19",
         "ts-node": "^10.9.2",
         "typescript": "^5.7.2",

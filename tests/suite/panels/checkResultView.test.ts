@@ -28,7 +28,7 @@ suite('Check Result View Test Suite', () => {
             undefined,
             vscode.ConfigurationTarget.Global
         );
-        await vscode.window.showTextDocument(doc, {preview: true, preserveFocus: false});
+        await vscode.window.showTextDocument(doc, { preview: true, preserveFocus: false });
         return vscode.commands.executeCommand('workbench.action.closeActiveEditor');
     });
 
