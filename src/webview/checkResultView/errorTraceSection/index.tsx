@@ -1,5 +1,3 @@
-/// <reference path="../vscode-elements.d.ts" />
-
 import * as React from 'react';
 import { ModelCheckResult } from '../../../model/check';
 import { ErrorTrace } from './errorTrace';

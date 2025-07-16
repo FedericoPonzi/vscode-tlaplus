@@ -17,15 +17,15 @@ export const HeaderSection = React.memo(({checkResult}: HeaderSectionI) => {
             <div className="header-title">
                 <h1> Status </h1>
                 <div>
-                    <vscode-button 
-                        onClick={() => vscode.checkAgain()} 
-                        appearance="primary" 
+                    <vscode-button
+                        onClick={() => vscode.checkAgain()}
+                        appearance="primary"
                         {...(stillRunning ? { disabled: true } : {})}>
                         Check again
                     </vscode-button>
-                    <vscode-button 
-                        onClick={() => vscode.showTlcOutput()} 
-                        appearance="secondary" 
+                    <vscode-button
+                        onClick={() => vscode.showTlcOutput()}
+                        appearance="secondary"
                         {...(disableShowOutput ? { disabled: true } : {})}>
                         Full output
                     </vscode-button>

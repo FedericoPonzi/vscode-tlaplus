@@ -1,5 +1,3 @@
-/// <reference path="../../vscode-elements.d.ts" />
-
 import * as React from 'react';
 import { TlapsProofObligationState, TlapsProofStepDetails } from '../../../model/tlaps.ts';
 import { vscodeClient } from '../vscode_client.ts';

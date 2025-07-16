@@ -1,4 +1,3 @@
-/// <reference path="../vscode-elements.d.ts" />
 import * as React from 'react';
 import { Position, Range } from 'vscode';
 import { vscode } from './vscode';

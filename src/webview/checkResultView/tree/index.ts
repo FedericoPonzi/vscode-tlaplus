@@ -1,9 +1,7 @@
-/// <reference path="../vscode-elements.d.ts" />
-
 import * as React from 'react';
 
 // Tree View - now using vscode-tree-view web component
-export const VSCodeTreeView: React.FC<React.PropsWithChildren<{}>> = ({ children, ...props }) => {
+export const VSCodeTreeView: React.FC<React.PropsWithChildren<Record<string, never>>> = ({ children, ...props }) => {
     return React.createElement('vscode-tree-view', props, children);
 };
 
@@ -17,14 +15,14 @@ interface VSCodeTreeItemProps {
     children?: React.ReactNode;
 }
 
-export const VSCodeTreeItem: React.FC<VSCodeTreeItemProps> = ({ 
-    expanded, 
-    id, 
-    onClick, 
-    onKeyDown, 
-    onExpandedChanged, 
-    children, 
-    ...props 
+export const VSCodeTreeItem: React.FC<VSCodeTreeItemProps> = ({
+    expanded,
+    id,
+    onClick,
+    onKeyDown,
+    onExpandedChanged,
+    children,
+    ...props
 }) => {
     const handleExpandedChange = React.useCallback((event: Event) => {
         if (onExpandedChanged) {

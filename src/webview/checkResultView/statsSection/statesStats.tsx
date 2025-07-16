@@ -1,4 +1,3 @@
-/// <reference path="../../vscode-elements.d.ts" />
 import * as React from 'react';
 import { InitialStateStatItem } from '../../../model/check';
 import { DataGridCellDefault, DataGridCellHeader } from '../common';

@@ -1,5 +1,3 @@
-/// <reference path="../vscode-elements.d.ts" />
-
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { TlapsConfigChanged, TlapsProofObligationState, TlapsProofStepDetails } from '../../model/tlaps.ts';

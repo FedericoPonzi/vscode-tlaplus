@@ -94,28 +94,28 @@
   - Ensure all functionality works identically to original implementation
   - _Requirements: 3.1, 3.2, 3.3, 4.1, 4.2_
 
-- [ ] 14. Verify compatibility and clean build
+- [x] 14. Verify compatibility and clean build
   - Test extension with VS Code versions 1.95.0 and higher
   - Ensure no deprecation warnings in build output
   - Verify webview panels work correctly in all supported VS Code themes
   - Confirm extension loads and functions without errors
   - _Requirements: 2.3, 5.1, 5.2, 5.3_
 
-- [ ] 15. Establish permanent visual regression testing infrastructure
+- [x] 15. Establish permanent visual regression testing infrastructure
   - Move successful "after" screenshots to permanent location (`tests/visual-regression/screenshots/`)
   - Create permanent visual regression test suite for ongoing use
   - Set up CI integration for visual regression testing on future changes
   - Document visual testing process for future UI changes
   - _Requirements: 4.1, 4.2, 4.3, 6.1, 6.2_
 
-- [ ] 16. Document migration and prepare for selective cleanup
+- [x] 16. Document migration and prepare for selective cleanup
   - Copy baseline screenshots from `.migration-temp/` to attach to pull request
   - Document any intentional visual changes or improvements
   - Create component mapping documentation for future reference
   - Move reusable screenshot utilities to permanent test infrastructure
   - _Requirements: 4.1, 4.2, 4.3_
 
-- [ ] 17. Clean up temporary migration artifacts only
+- [x] 17. Clean up temporary migration artifacts only
   - Remove `.migration-temp/` directory (temporary baseline screenshots and comparison files)
   - Remove migration-specific baseline capture scripts (keep ongoing visual test utilities)
   - Remove temporary migration configuration files

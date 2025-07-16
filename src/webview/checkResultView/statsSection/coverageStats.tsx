@@ -1,4 +1,3 @@
-/// <reference path="../../vscode-elements.d.ts" />
 import * as React from 'react';
 import { CoverageItem } from '../../../model/check';
 import { CodeRangeLink, DataGridCellDefault, DataGridCellHeader } from '../common';

@@ -4,5 +4,3 @@ node_modules/
 .vscode-test-web/
 version
 *.vsix
-# Migration temporary files
-.migration-temp/

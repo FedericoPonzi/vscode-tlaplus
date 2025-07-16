@@ -1,4 +1,3 @@
-/// <reference path="../../vscode-elements.d.ts" />
 import * as React from 'react';
 import { ErrorInfo, MessageLine, ModelCheckResult, OutputLine, WarningInfo } from '../../../model/check';
 import { CodePositionLink } from '../common';
