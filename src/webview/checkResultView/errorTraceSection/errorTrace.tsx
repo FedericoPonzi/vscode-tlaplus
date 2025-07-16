@@ -1,5 +1,5 @@
-import { TextField } from '@vscode/webview-ui-toolkit';
-import { VSCodePanelTab, VSCodePanelView, VSCodeTextField } from '@vscode/webview-ui-toolkit/react';
+/// <reference path="../vscode-elements.d.ts" />
+
 import * as React from 'react';
 import { ErrorInfo } from '../../../model/check';
 import { VSCodeTreeView } from '../tree';
@@ -16,15 +16,18 @@ export const ErrorTrace = React.memo(({errorInfo, traceId}: ErrorTraceI) => {
 
     return (
         <>
-            <VSCodePanelTab id={`error-trace-tab-${traceId}`}> Counterexample {traceId} </VSCodePanelTab>
-            <VSCodePanelView id={`error-trace-view-${traceId}`} className="flex-direction-column">
+            <vscode-panel-tab id={`error-trace-tab-${traceId}`}> Counterexample {traceId} </vscode-panel-tab>
+            <vscode-panel-view id={`error-trace-view-${traceId}`} className="flex-direction-column">
                 <div className="error-trace-options">
-                    <VSCodeTextField onChange={(e) => setFilter(e.currentTarget.value)} placeholder="Filter">
+                    <vscode-text-field onChange={(e) => setFilter((e.target as HTMLInputElement).value)} placeholder="Filter">
                         <span
                             slot="end"
                             className="codicon codicon-search cursor-pointer"
-                            onClick={(e) => setFilter((e.currentTarget.parentNode as TextField).value)}/>
-                    </VSCodeTextField>
+                            onClick={(e) => {
+                                const textField = (e.currentTarget.parentNode as HTMLElement).querySelector('input');
+                                if (textField) {setFilter(textField.value);}
+                            }}/>
+                    </vscode-text-field>
 
                     {settings.hideModified &&
                         <span
@@ -59,7 +62,7 @@ export const ErrorTrace = React.memo(({errorInfo, traceId}: ErrorTraceI) => {
                                 settings={settings}
                                 expanded={expandedStates[index]}/>)}
                 </VSCodeTreeView>
-            </VSCodePanelView>
+            </vscode-panel-view>
         </>
     );
 });

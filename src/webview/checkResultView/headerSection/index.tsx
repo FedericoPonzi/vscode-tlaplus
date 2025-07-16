@@ -1,4 +1,3 @@
-import { VSCodeButton, VSCodeDivider, VSCodeLink } from '@vscode/webview-ui-toolkit/react';
 import * as React from 'react';
 import { ModelCheckResult, SpecFiles } from '../../../model/check';
 import { EmptyLine } from '../common';
@@ -18,12 +17,18 @@ export const HeaderSection = React.memo(({checkResult}: HeaderSectionI) => {
             <div className="header-title">
                 <h1> Status </h1>
                 <div>
-                    <VSCodeButton onClick={vscode.checkAgain} appearance="primary" disabled={stillRunning}>
+                    <vscode-button 
+                        onClick={() => vscode.checkAgain()} 
+                        appearance="primary" 
+                        {...(stillRunning ? { disabled: true } : {})}>
                         Check again
-                    </VSCodeButton>
-                    <VSCodeButton onClick={vscode.showTlcOutput} appearance="secondary" disabled={disableShowOutput}>
+                    </vscode-button>
+                    <vscode-button 
+                        onClick={() => vscode.showTlcOutput()} 
+                        appearance="secondary" 
+                        {...(disableShowOutput ? { disabled: true } : {})}>
                         Full output
-                    </VSCodeButton>
+                    </vscode-button>
                 </div>
             </div>
 
@@ -32,7 +37,7 @@ export const HeaderSection = React.memo(({checkResult}: HeaderSectionI) => {
             <div className="checking-state">
                 <span className={`state-${checkResult.state}`}> {checkResult.stateName} </span>
                 <span hidden={checkResult.state !== 'R'}>
-                    (<VSCodeLink onClick={vscode.stopProcess} href="#"> stop </VSCodeLink>)
+                    (<vscode-link onClick={() => vscode.stopProcess()} href="#"> stop </vscode-link>)
                 </span>
                 <span hidden={ checkResult.statusDetails === undefined
                     || checkResult.statusDetails === null}>: {' ' + checkResult.statusDetails} </span>
@@ -41,7 +46,7 @@ export const HeaderSection = React.memo(({checkResult}: HeaderSectionI) => {
             <div className="timeInfo"> Start: {checkResult.startDateTimeStr}, end: {checkResult.endDateTimeStr} </div>
 
             <EmptyLine/>
-            <VSCodeDivider/>
+            <vscode-divider/>
         </section>
     );
 });

@@ -8,6 +8,8 @@ import { StatsSection } from './checkResultView/statsSection';
 import { vscode } from './checkResultView/vscode';
 
 import '@vscode/codicons/dist/codicon.css';
+import '@vscode-elements/elements/dist/bundled';
+import './common/vscode-elements-theme.css';
 
 interface CheckResultViewAppI {state: ModelCheckResult}
 const CheckResultViewApp = React.memo(({state}: CheckResultViewAppI) =>

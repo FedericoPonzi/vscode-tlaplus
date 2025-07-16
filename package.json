@@ -743,6 +743,11 @@
         "pretest": "tsc -p ./",
         "test": "node ./out/tests/runTest.js",
         "test:tlaplus-grammar": "vscode-tmgrammar-test ./tests/suite/languages/*.tla -g ./languages/tlaplus-grammar.json -g ./languages/pluscal-grammar.json",
+        "test:visual": "npx playwright test tests/migration/visual-regression.test.ts",
+        "test:visual:capture": "npx ts-node tests/migration/run-visual-regression.ts --mode capture",
+        "test:visual:compare": "npx ts-node tests/migration/run-visual-regression.ts --mode compare",
+        "test:visual:strict": "npx ts-node tests/migration/run-visual-regression.ts --config strict",
+        "test:visual:headed": "npx ts-node tests/migration/run-visual-regression.ts --headed",
         "migration:capture-baseline": "npx ts-node .migration-temp/visual-tests/run-baseline-capture.ts"
     },
     "devDependencies": {
@@ -778,7 +783,6 @@
         "@vscode-elements/elements": "^1.17.0",
         "@vscode/codicons": "^0.0.33",
         "@vscode/debugadapter": "^1.63.0",
-        "@vscode/webview-ui-toolkit": "^1.4.0",
         "await-notify": "^1.0.1",
         "chart.js": "^4.4.1",
         "express": "^5.1.0",

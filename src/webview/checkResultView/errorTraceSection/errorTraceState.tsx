@@ -1,4 +1,3 @@
-import { TreeItem } from '@microsoft/fast-components';
 import * as React from 'react';
 import { CollectionValue, ErrorTraceItem } from '../../../model/check';
 import { CodeRangeLink } from '../common';
@@ -14,12 +13,14 @@ export const ErrorTraceState = React.memo(({errorTraceItem, settings, expanded}:
     // Not using onExpandedChanged because collapseAll/expandAll would also trigger that event
     const handleExpand = (e: React.MouseEvent) => {
         if ((e.target as HTMLElement).id === stateId) {
-            settings.setExpandValue(errorTraceItem.num-1, (e.currentTarget as TreeItem).expanded);
+            const treeItem = e.currentTarget as HTMLElement & { expanded: boolean };
+            settings.setExpandValue(errorTraceItem.num-1, treeItem.expanded);
         }
     };
     const handleExpandKey = (e: React.KeyboardEvent<HTMLElement>) => {
         if ((e.target as HTMLElement).id === stateId && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
-            settings.setExpandValue(errorTraceItem.num-1, (e.currentTarget as TreeItem).expanded);
+            const treeItem = e.currentTarget as HTMLElement & { expanded: boolean };
+            settings.setExpandValue(errorTraceItem.num-1, treeItem.expanded);
         }
     };
 

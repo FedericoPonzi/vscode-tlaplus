@@ -1,0 +1,457 @@
+/* Global CSS custom properties and part selectors for vscode-elements components */
+/* This file provides consistent theming across all webview components */
+
+/* Root variables for consistent theming */
+:root {
+    /* Button variables */
+    --vscode-button-padding-horizontal: 12px;
+    --vscode-button-padding-vertical: 6px;
+    --vscode-button-border-radius: 2px;
+    --vscode-button-font-size: 13px;
+    --vscode-button-font-weight: 400;
+    --vscode-button-line-height: 18px;
+    
+    /* Link variables */
+    --vscode-link-decoration: none;
+    --vscode-link-hover-decoration: underline;
+    
+    /* Data grid variables */
+    --vscode-data-grid-cell-padding: 8px 12px;
+    --vscode-data-grid-font-size: 13px;
+    --vscode-data-grid-border-radius: 2px;
+    
+    /* Panel variables */
+    --vscode-panel-tab-padding: 8px 12px;
+    --vscode-panel-content-padding: 16px;
+    
+    /* Tree variables */
+    --vscode-tree-item-indent: 16px;
+    --vscode-tree-item-height: 22px;
+    
+    /* Text field variables */
+    --vscode-text-field-padding: 4px 8px;
+    --vscode-text-field-border-radius: 2px;
+    --vscode-text-field-font-size: 13px;
+    
+    /* Divider variables */
+    --vscode-divider-margin: 1em 0;
+}
+
+/* Button component styling */
+vscode-button {
+    --button-font-family: var(--vscode-font-family);
+    --button-font-size: var(--vscode-button-font-size);
+    --button-font-weight: var(--vscode-button-font-weight);
+    --button-line-height: var(--vscode-button-line-height);
+    --button-border-radius: var(--vscode-button-border-radius);
+    --button-padding-horizontal: var(--vscode-button-padding-horizontal);
+    --button-padding-vertical: var(--vscode-button-padding-vertical);
+}
+
+vscode-button[appearance="primary"] {
+    --button-background: var(--vscode-button-background);
+    --button-foreground: var(--vscode-button-foreground);
+    --button-border: var(--vscode-button-border, transparent);
+    --button-hover-background: var(--vscode-button-hoverBackground);
+}
+
+vscode-button[appearance="secondary"] {
+    --button-background: var(--vscode-button-secondaryBackground);
+    --button-foreground: var(--vscode-button-secondaryForeground);
+    --button-border: var(--vscode-button-border, transparent);
+    --button-hover-background: var(--vscode-button-secondaryHoverBackground);
+}
+
+vscode-button[appearance="icon"] {
+    --button-background: transparent;
+    --button-foreground: var(--vscode-foreground);
+    --button-border: transparent;
+    --button-hover-background: var(--vscode-toolbar-hoverBackground);
+    --button-active-background: var(--vscode-toolbar-activeBackground);
+    --button-padding-horizontal: 4px;
+    --button-padding-vertical: 4px;
+}
+
+vscode-button::part(control) {
+    background: var(--button-background);
+    color: var(--button-foreground);
+    border: 1px solid var(--button-border);
+    padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    line-height: var(--button-line-height);
+    border-radius: var(--button-border-radius);
+    font-family: var(--button-font-family);
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s ease-in-out;
+}
+
+vscode-button::part(control):hover:not(:disabled) {
+    background: var(--button-hover-background);
+}
+
+vscode-button::part(control):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: 2px;
+}
+
+vscode-button::part(control):active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+vscode-button:disabled::part(control) {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Link component styling */
+vscode-link {
+    --link-foreground: var(--vscode-textLink-foreground);
+    --link-active-foreground: var(--vscode-textLink-activeForeground);
+    --link-hover-foreground: var(--vscode-textLink-foreground);
+}
+
+vscode-link::part(control) {
+    color: var(--link-foreground);
+    text-decoration: var(--vscode-link-decoration);
+    cursor: pointer;
+    outline: none;
+    font-family: var(--vscode-font-family);
+    font-size: inherit;
+}
+
+vscode-link::part(control):hover {
+    color: var(--link-hover-foreground);
+    text-decoration: var(--vscode-link-hover-decoration);
+}
+
+vscode-link::part(control):active {
+    color: var(--link-active-foreground);
+}
+
+vscode-link::part(control):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: 2px;
+}
+
+/* Divider component styling */
+vscode-divider {
+    margin: var(--vscode-divider-margin);
+    --divider-border: var(--vscode-panel-border);
+}
+
+vscode-divider::part(root) {
+    border-top: 1px solid var(--divider-border);
+    height: 1px;
+    margin: 0;
+}
+
+/* Data grid component styling */
+vscode-data-grid {
+    --data-grid-background: transparent;
+    --data-grid-foreground: var(--vscode-foreground);
+    --data-grid-border: var(--vscode-panel-border);
+    --data-grid-header-background: var(--vscode-list-headerBackground);
+    --data-grid-header-foreground: var(--vscode-list-headerForeground);
+    --data-grid-row-background: transparent;
+    --data-grid-row-hover-background: var(--vscode-list-hoverBackground);
+    --data-grid-font-family: var(--vscode-font-family);
+    --data-grid-font-size: var(--vscode-data-grid-font-size);
+}
+
+vscode-data-grid::part(root) {
+    background: var(--data-grid-background);
+    color: var(--data-grid-foreground);
+    border: 1px solid var(--data-grid-border);
+    font-family: var(--data-grid-font-family);
+    font-size: var(--data-grid-font-size);
+    width: 100%;
+    border-radius: var(--vscode-data-grid-border-radius);
+}
+
+vscode-data-grid-row::part(root) {
+    background: var(--data-grid-row-background);
+    transition: background-color 0.1s ease-in-out;
+}
+
+vscode-data-grid-row:hover::part(root) {
+    background: var(--data-grid-row-hover-background);
+}
+
+vscode-data-grid-row[row-type="header"]::part(root) {
+    background: var(--data-grid-header-background);
+    color: var(--data-grid-header-foreground);
+    font-weight: 600;
+}
+
+vscode-data-grid-cell::part(root) {
+    background: transparent;
+    color: inherit;
+    padding: var(--vscode-data-grid-cell-padding);
+    border-right: 1px solid var(--data-grid-border);
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+}
+
+vscode-data-grid-cell:last-child::part(root) {
+    border-right: none;
+}
+
+vscode-data-grid-cell[cell-type="columnheader"]::part(root) {
+    background: var(--data-grid-header-background);
+    color: var(--data-grid-header-foreground);
+    font-weight: 600;
+    border-bottom: 1px solid var(--data-grid-border);
+}
+
+/* Panel component styling */
+vscode-panels {
+    --panels-background: transparent;
+    --panels-foreground: var(--vscode-foreground);
+    --panels-border: var(--vscode-panel-border);
+}
+
+vscode-panels::part(tablist) {
+    background: transparent;
+    border-bottom: 1px solid var(--panels-border);
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+vscode-panel-tab {
+    --tab-background: transparent;
+    --tab-foreground: var(--vscode-tab-inactiveForeground);
+    --tab-hover-background: var(--vscode-tab-hoverBackground);
+    --tab-active-background: transparent;
+    --tab-active-foreground: var(--vscode-tab-activeForeground);
+    --tab-border: var(--vscode-tab-border);
+    --tab-active-border: var(--vscode-tab-activeBorder);
+}
+
+vscode-panel-tab::part(tab) {
+    background: var(--tab-background);
+    color: var(--tab-foreground);
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: var(--vscode-panel-tab-padding);
+    font-size: 13px;
+    font-family: var(--vscode-font-family);
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s ease-in-out;
+}
+
+vscode-panel-tab::part(tab):hover {
+    background: var(--tab-hover-background);
+}
+
+vscode-panel-tab[aria-selected="true"]::part(tab) {
+    background: var(--tab-active-background);
+    color: var(--tab-active-foreground);
+    border-bottom-color: var(--tab-active-border);
+}
+
+vscode-panel-tab::part(tab):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: -1px;
+}
+
+vscode-panel-view {
+    --panel-background: transparent;
+    --panel-foreground: var(--vscode-foreground);
+}
+
+vscode-panel-view::part(content) {
+    background: var(--panel-background);
+    color: var(--panel-foreground);
+    padding: var(--vscode-panel-content-padding);
+}
+
+/* Text field component styling */
+vscode-text-field {
+    --text-field-background: var(--vscode-input-background);
+    --text-field-foreground: var(--vscode-input-foreground);
+    --text-field-border: var(--vscode-input-border);
+    --text-field-focus-border: var(--vscode-focusBorder);
+    --text-field-placeholder-foreground: var(--vscode-input-placeholderForeground);
+    --text-field-font-family: var(--vscode-font-family);
+    --text-field-font-size: var(--vscode-text-field-font-size);
+    --text-field-border-radius: var(--vscode-text-field-border-radius);
+}
+
+vscode-text-field::part(root) {
+    background: var(--text-field-background);
+    color: var(--text-field-foreground);
+    border: 1px solid var(--text-field-border);
+    border-radius: var(--text-field-border-radius);
+    font-size: var(--text-field-font-size);
+    font-family: var(--text-field-font-family);
+    outline: none;
+    transition: border-color 0.1s ease-in-out;
+}
+
+vscode-text-field::part(control) {
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: var(--vscode-text-field-padding);
+    font-size: inherit;
+    font-family: inherit;
+    outline: none;
+}
+
+vscode-text-field::part(control)::placeholder {
+    color: var(--text-field-placeholder-foreground);
+}
+
+vscode-text-field:focus-within::part(root) {
+    border-color: var(--text-field-focus-border);
+}
+
+/* Tree component styling */
+vscode-tree-view {
+    --tree-view-background: transparent;
+    --tree-view-foreground: var(--vscode-foreground);
+    --tree-view-border: transparent;
+    --tree-view-font-family: var(--vscode-font-family);
+    --tree-view-font-size: 13px;
+}
+
+vscode-tree-view::part(root) {
+    background: var(--tree-view-background);
+    color: var(--tree-view-foreground);
+    border: 1px solid var(--tree-view-border);
+    font-family: var(--tree-view-font-family);
+    font-size: var(--tree-view-font-size);
+}
+
+vscode-tree-item {
+    --tree-item-background: transparent;
+    --tree-item-foreground: var(--vscode-foreground);
+    --tree-item-hover-background: var(--vscode-list-hoverBackground);
+    --tree-item-selected-background: var(--vscode-list-activeSelectionBackground);
+    --tree-item-selected-foreground: var(--vscode-list-activeSelectionForeground);
+    --tree-item-focus-background: var(--vscode-list-focusBackground);
+    --tree-item-focus-foreground: var(--vscode-list-focusForeground);
+    --tree-item-height: var(--vscode-tree-item-height);
+}
+
+vscode-tree-item::part(positioning-region) {
+    background: var(--tree-item-background);
+    color: var(--tree-item-foreground);
+    padding: 2px 4px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+    min-height: var(--tree-item-height);
+}
+
+vscode-tree-item::part(content-region) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    height: fit-content;
+    min-height: var(--tree-item-height);
+}
+
+vscode-tree-item::part(expand-collapse-button) {
+    background: transparent;
+    color: var(--tree-item-foreground);
+    border: none;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin-right: 4px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+vscode-tree-item::part(expand-collapse-button):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: -1px;
+}
+
+vscode-tree-item:hover::part(positioning-region) {
+    background: var(--tree-item-hover-background);
+}
+
+vscode-tree-item[selected]::part(positioning-region) {
+    background: var(--tree-item-selected-background);
+    color: var(--tree-item-selected-foreground);
+}
+
+vscode-tree-item[aria-current="true"]::part(positioning-region) {
+    background: var(--tree-item-focus-background);
+    color: var(--tree-item-focus-foreground);
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    :root {
+        --vscode-button-padding-horizontal: 8px;
+        --vscode-button-padding-vertical: 4px;
+        --vscode-button-font-size: 12px;
+        --vscode-data-grid-cell-padding: 6px 8px;
+        --vscode-data-grid-font-size: 12px;
+        --vscode-panel-tab-padding: 6px 8px;
+        --vscode-panel-content-padding: 12px;
+        --vscode-tree-item-indent: 12px;
+        --vscode-tree-item-height: 20px;
+        --vscode-text-field-padding: 3px 6px;
+        --vscode-text-field-font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --vscode-button-padding-horizontal: 6px;
+        --vscode-button-padding-vertical: 3px;
+        --vscode-button-font-size: 11px;
+        --vscode-data-grid-cell-padding: 4px 6px;
+        --vscode-data-grid-font-size: 11px;
+        --vscode-panel-tab-padding: 4px 6px;
+        --vscode-panel-content-padding: 8px;
+        --vscode-tree-item-indent: 8px;
+        --vscode-tree-item-height: 18px;
+        --vscode-text-field-padding: 2px 4px;
+        --vscode-text-field-font-size: 11px;
+    }
+}
+
+/* High contrast theme adjustments */
+.vscode-high-contrast vscode-button::part(control) {
+    border-width: 2px;
+}
+
+.vscode-high-contrast vscode-link::part(control) {
+    text-decoration: underline;
+}
+
+.vscode-high-contrast vscode-divider::part(root) {
+    border-top-width: 2px;
+    border-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast vscode-data-grid::part(root) {
+    border-width: 2px;
+    border-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast vscode-text-field::part(root) {
+    border-width: 2px;
+}
+
+.vscode-high-contrast vscode-tree-view::part(root) {
+    border-width: 2px;
+    border-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast vscode-panels::part(tablist) {
+    border-bottom-width: 2px;
+    border-color: var(--vscode-contrastBorder);
+}

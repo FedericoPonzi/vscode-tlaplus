@@ -1,4 +1,3 @@
-import { TreeItem } from '@microsoft/fast-components';
 import * as React from 'react';
 import { CollectionValue } from '../../../model/check';
 import { VSCodeTreeItem } from '../tree';
@@ -10,7 +9,10 @@ interface ErrorTraceVariableI {value: CollectionValue, stateId: number, settings
 export const ErrorTraceVariable = React.memo(({value, stateId, settings}: ErrorTraceVariableI) => {
 
     const [expanded, setExpanded] = React.useState(false);
-    const handleExpanded = (e) => setExpanded((e.currentTarget as TreeItem).expanded);
+    const handleExpanded = (e: Event) => {
+        const treeItem = e.currentTarget as HTMLElement & { expanded: boolean };
+        setExpanded(treeItem.expanded);
+    };
 
     if (stateId !== 1 && settings.hideModified && value.changeType === 'N') {
         return (null);

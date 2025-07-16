@@ -1,4 +1,4 @@
-import { VSCodeDataGrid, VSCodeDataGridRow, VSCodePanelTab, VSCodePanelView } from '@vscode/webview-ui-toolkit/react';
+/// <reference path="../../vscode-elements.d.ts" />
 import * as React from 'react';
 import { CoverageItem } from '../../../model/check';
 import { CodeRangeLink, DataGridCellDefault, DataGridCellHeader } from '../common';
@@ -12,10 +12,10 @@ export const CoverageStats = React.memo(({stats}: CoverageStatsI) => {
         <CodeRangeLink line={stat.action} filepath={stat.filePath} range={stat.range}/>;
 
     return (<>
-        <VSCodePanelTab id="stats-tab-2"> Coverage </VSCodePanelTab>
-        <VSCodePanelView id="stats-view-2" className="max-width-fit-content">
-            <VSCodeDataGrid aria-label="Coverage statistics">
-                <VSCodeDataGridRow rowType="sticky-header">
+        <vscode-panel-tab id="stats-tab-2"> Coverage </vscode-panel-tab>
+        <vscode-panel-view id="stats-view-2" className="max-width-fit-content">
+            <vscode-data-grid aria-label="Coverage statistics">
+                <vscode-data-grid-row row-type="sticky-header">
                     {headerColumns.map((v, id) =>
                         <DataGridCellHeader
                             key={id}
@@ -23,17 +23,17 @@ export const CoverageStats = React.memo(({stats}: CoverageStatsI) => {
                             value={v.value}
                             alignRight={v.alignRight}
                             tooltip={v.tooltip}/>)}
-                </VSCodeDataGridRow>
+                </vscode-data-grid-row>
 
                 {stats.map((stat, index) =>
-                    <VSCodeDataGridRow key={index} className={stat.total !== 0 ? '' : 'coverage-zero'}>
+                    <vscode-data-grid-row key={index} className={stat.total !== 0 ? '' : 'coverage-zero'}>
                         <DataGridCellDefault id={1} value={stat.module} alignRight={false} tooltip={tooltip(stat)}/>
                         <DataGridCellDefault id={2} value={codeLink(stat)} alignRight={false} tooltip={tooltip(stat)}/>
                         <DataGridCellDefault id={3} value={stat.total} alignRight={true} tooltip={tooltip(stat)}/>
                         <DataGridCellDefault id={4} value={stat.distinct} alignRight={true} tooltip={tooltip(stat)}/>
-                    </VSCodeDataGridRow>)}
-            </VSCodeDataGrid>
-        </VSCodePanelView>
+                    </vscode-data-grid-row>)}
+            </vscode-data-grid>
+        </vscode-panel-view>
     </>
     );
 });

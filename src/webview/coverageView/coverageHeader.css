@@ -2,12 +2,20 @@
     border-bottom: 1px solid var(--vscode-panel-border);
     padding: 16px;
     background-color: var(--vscode-editor-background);
+    color: var(--vscode-foreground);
+    font-family: var(--vscode-font-family);
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 16px;
+}
+
+.header-info {
+    flex: 1;
+    min-width: 0; /* Allow flex item to shrink */
 }
 
 .header-info h2 {
@@ -15,42 +23,53 @@
     font-size: 18px;
     font-weight: 500;
     color: var(--vscode-foreground);
+    font-family: var(--vscode-font-family);
+    line-height: 1.3;
 }
 
 .stats-summary {
     display: flex;
     gap: 24px;
     margin-bottom: 8px;
+    flex-wrap: wrap;
 }
 
 .stat-item {
     display: flex;
     gap: 8px;
     align-items: center;
+    min-width: 0; /* Allow flex item to shrink */
 }
 
 .stat-label {
     color: var(--vscode-descriptionForeground);
     font-size: 13px;
+    font-family: var(--vscode-font-family);
+    white-space: nowrap;
 }
 
 .stat-value {
     color: var(--vscode-foreground);
     font-weight: 500;
     font-size: 14px;
+    font-family: var(--vscode-font-family);
+    white-space: nowrap;
 }
 
 .last-updated {
     color: var(--vscode-descriptionForeground);
     font-size: 12px;
     margin-top: 4px;
+    font-family: var(--vscode-font-family);
 }
 
 .header-actions {
     display: flex;
     gap: 8px;
+    flex-shrink: 0;
 }
 
+/* Icon button styling - can be replaced with vscode-button when migrated */
 .icon-button {
     background: transparent;
     border: 1px solid transparent;
@@ -74,4 +93,165 @@
 
 .icon-button .codicon {
     font-size: 16px;
+}
+
+/* Button styling for vscode-elements when migrated */
+vscode-button[appearance="icon"] {
+    --button-background: transparent;
+    --button-foreground: var(--vscode-foreground);
+    --button-border: transparent;
+    --button-hover-background: var(--vscode-toolbar-hoverBackground);
+    --button-active-background: var(--vscode-toolbar-activeBackground);
+    --button-padding: 4px;
+    --button-border-radius: 4px;
+}
+
+vscode-button[appearance="icon"]::part(control) {
+    background: var(--button-background);
+    color: var(--button-foreground);
+    border: 1px solid var(--button-border);
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    outline: none;
+}
+
+vscode-button[appearance="icon"]::part(control):hover {
+    background-color: var(--button-hover-background);
+}
+
+vscode-button[appearance="icon"]::part(control):active {
+    background-color: var(--button-active-background);
+}
+
+vscode-button[appearance="icon"]::part(control):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: 2px;
+}
+
+vscode-button[appearance="icon"] .codicon {
+    font-size: 16px;
+}
+/* R
+esponsive design */
+@media (max-width: 1024px) {
+    .coverage-header {
+        padding: 12px;
+    }
+    
+    .header-info h2 {
+        font-size: 16px;
+    }
+    
+    .stats-summary {
+        gap: 16px;
+    }
+    
+    .stat-label,
+    .stat-value {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .coverage-header {
+        padding: 8px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .header-info h2 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .stats-summary {
+        gap: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .stat-label,
+    .stat-value {
+        font-size: 11px;
+    }
+    
+    .last-updated {
+        font-size: 11px;
+        margin-top: 2px;
+    }
+    
+    .header-actions {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .coverage-header {
+        padding: 6px;
+    }
+    
+    .header-info h2 {
+        font-size: 13px;
+        word-break: break-word;
+    }
+    
+    .stats-summary {
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 4px;
+    }
+    
+    .stat-item {
+        gap: 6px;
+    }
+    
+    .icon-button,
+    vscode-button[appearance="icon"] {
+        padding: 2px;
+    }
+    
+    .icon-button .codicon,
+    vscode-button[appearance="icon"] .codicon {
+        font-size: 14px;
+    }
+}
+
+/* High contrast theme adjustments */
+.vscode-high-contrast .coverage-header {
+    border-bottom-width: 2px;
+    border-bottom-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast .icon-button {
+    border-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast .icon-button:hover {
+    background-color: var(--vscode-list-hoverBackground);
+    border-color: var(--vscode-contrastActiveBorder);
+}
+
+.vscode-high-contrast .icon-button:active {
+    background-color: var(--vscode-list-activeSelectionBackground);
+}
+
+.vscode-high-contrast vscode-button[appearance="icon"]::part(control) {
+    border-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast vscode-button[appearance="icon"]::part(control):hover {
+    background-color: var(--vscode-list-hoverBackground);
+    border-color: var(--vscode-contrastActiveBorder);
+}
+
+.vscode-high-contrast vscode-button[appearance="icon"]::part(control):active {
+    background-color: var(--vscode-list-activeSelectionBackground);
 }

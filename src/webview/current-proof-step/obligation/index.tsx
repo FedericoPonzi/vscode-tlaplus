@@ -1,11 +1,13 @@
+/// <reference path="../../vscode-elements.d.ts" />
+
 import * as React from 'react';
 import { TlapsProofObligationState, TlapsProofStepDetails } from '../../../model/tlaps.ts';
-import { VSCodeLink } from '@vscode/webview-ui-toolkit/react/index';
 import { vscodeClient } from '../vscode_client.ts';
 import { Location } from 'vscode-languageclient';
 import { ProofStatusIcon } from '../proofStatusIcon/index.tsx';
 import { NoteIcon } from '../noteIcon/index.tsx';
 import './index.css';
+import '@vscode-elements/elements/dist/bundled';
 
 interface ObligationI { details: TlapsProofStepDetails; obligation: TlapsProofObligationState }
 export const Obligation = React.memo(({ details, obligation }: ObligationI) => {
@@ -45,9 +47,9 @@ export const Obligation = React.memo(({ details, obligation }: ObligationI) => {
                         {obligation.role === 'main' ? null : <span>[{obligation.role}]</span>}&nbsp;
                         <ProofStatusIcon proofStatus={obligation.status}></ProofStatusIcon>
                     </b>&nbsp;at&nbsp;
-                    <VSCodeLink onClick={showLocation}>
+                    <vscode-link onClick={showLocation}>
                         {obligation.range.start.line + 1}:{obligation.range.start.character + 1}
-                    </VSCodeLink>
+                    </vscode-link>
                 </div>
                 {results}
                 <pre className='obl-text'>{obligation.normalized}</pre>

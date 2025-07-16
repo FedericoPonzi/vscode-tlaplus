@@ -17,3 +17,58 @@
     padding-left: 2px;
     border-left: 1px solid #ffffff10;
 }
+
+/* Link styling for vscode-elements */
+vscode-link {
+    --link-foreground: var(--vscode-textLink-foreground);
+    --link-active-foreground: var(--vscode-textLink-activeForeground);
+    --link-hover-foreground: var(--vscode-textLink-foreground);
+}
+
+vscode-link::part(control) {
+    color: var(--link-foreground);
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    font-family: var(--vscode-font-family);
+    font-size: inherit;
+}
+
+vscode-link::part(control):hover {
+    color: var(--link-hover-foreground);
+    text-decoration: underline;
+}
+
+vscode-link::part(control):active {
+    color: var(--link-active-foreground);
+}
+
+vscode-link::part(control):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: 2px;
+}
+
+/* Theme-specific adjustments */
+.vscode-light .role-other {
+    color: #6a737d;
+}
+
+.vscode-dark .role-other {
+    color: #8b9eaa;
+}
+
+.vscode-high-contrast .role-other {
+    color: var(--vscode-descriptionForeground);
+}
+
+.vscode-light .obl-text {
+    border-left-color: rgba(0, 0, 0, 0.1);
+}
+
+.vscode-dark .obl-text {
+    border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+.vscode-high-contrast .obl-text {
+    border-left-color: var(--vscode-contrastBorder);
+}

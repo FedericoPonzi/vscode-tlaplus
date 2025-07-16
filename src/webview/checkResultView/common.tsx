@@ -1,4 +1,4 @@
-import { VSCodeDataGridCell, VSCodeLink } from '@vscode/webview-ui-toolkit/react';
+/// <reference path="../vscode-elements.d.ts" />
 import * as React from 'react';
 import { Position, Range } from 'vscode';
 import { vscode } from './vscode';
@@ -20,7 +20,7 @@ export const CodePositionLink = React.memo(({line, filepath, position}: CodePosi
 
     const location = {'line': position.line, 'character': position.character};
     const openFileAtLocation = () => vscode.openFile(filepath, location);
-    return (<VSCodeLink onClick={openFileAtLocation}>{line}</VSCodeLink>);
+    return (<vscode-link onClick={openFileAtLocation}>{line}</vscode-link>);
 });
 
 interface DataGridCellI {
@@ -31,22 +31,22 @@ interface DataGridCellI {
 }
 
 export const DataGridCellHeader = React.memo(({id, value, alignRight, tooltip}: DataGridCellI) => (
-    <VSCodeDataGridCell title={tooltip}
+    <vscode-data-grid-cell title={tooltip}
         cell-type="columnheader"
-        grid-column={id}
+        grid-column={id.toString()}
         className={`${alignRight ? 'text-align-right' : ''} hidden-overflow-ellipsis`}>
         {value}
-    </VSCodeDataGridCell>
+    </vscode-data-grid-cell>
 ));
 
 export const DataGridCellDefault = React.memo(({id, value, alignRight, tooltip}: DataGridCellI) => (
-    <VSCodeDataGridCell
+    <vscode-data-grid-cell
         title={tooltip}
         cell-type="default"
-        grid-column={id}
+        grid-column={id.toString()}
         className={`${alignRight ? 'text-align-right' : ''} hidden-overflow-ellipsis`}>
         {typeof value === 'number' ? num(value) : value}
-    </VSCodeDataGridCell>
+    </vscode-data-grid-cell>
 ));
 
 const num = (n: number) => Number(n).toLocaleString().split(',').join(' ');

@@ -1,50 +1,53 @@
-import { provideFASTDesignSystem, treeViewStyles } from '@microsoft/fast-components';
-import {
-    FoundationElementDefinition,
-    TreeItem as FoundationTreeItem,
-    TreeView as FoundationTreeView,
-    TreeItemOptions,
-    treeItemTemplate,
-    treeViewTemplate
-} from '@microsoft/fast-foundation';
-import { provideReactWrapper } from '@microsoft/fast-react-wrapper';
+/// <reference path="../vscode-elements.d.ts" />
+
 import * as React from 'react';
-import { treeItemStyles } from './tree-item.styles';
 
-const {wrap} = provideReactWrapper(React, provideFASTDesignSystem());
+// Tree View - now using vscode-tree-view web component
+export const VSCodeTreeView: React.FC<React.PropsWithChildren<{}>> = ({ children, ...props }) => {
+    return React.createElement('vscode-tree-view', props, children);
+};
 
-// Tree View
+// Tree Item - now using vscode-tree-item web component
+interface VSCodeTreeItemProps {
+    expanded?: boolean;
+    id?: string;
+    onClick?: (event: React.MouseEvent) => void;
+    onKeyDown?: (event: React.KeyboardEvent) => void;
+    onExpandedChanged?: (event: Event) => void;
+    children?: React.ReactNode;
+}
 
-class TreeView extends FoundationTreeView {}
+export const VSCodeTreeItem: React.FC<VSCodeTreeItemProps> = ({ 
+    expanded, 
+    id, 
+    onClick, 
+    onKeyDown, 
+    onExpandedChanged, 
+    children, 
+    ...props 
+}) => {
+    const handleExpandedChange = React.useCallback((event: Event) => {
+        if (onExpandedChanged) {
+            onExpandedChanged(event);
+        }
+    }, [onExpandedChanged]);
 
-const vsCodeTreeView = TreeView.compose<FoundationElementDefinition, typeof TreeView>({
-    baseName: 'tree-view',
-    baseClass: FoundationTreeView,
-    template: treeViewTemplate,
-    styles: treeViewStyles
-});
+    React.useEffect(() => {
+        const element = document.getElementById(id || '');
+        if (element && onExpandedChanged) {
+            element.addEventListener('expanded-change', handleExpandedChange);
+            return () => {
+                element.removeEventListener('expanded-change', handleExpandedChange);
+            };
+        }
+    }, [id, handleExpandedChange, onExpandedChanged]);
 
-export const VSCodeTreeView = wrap(vsCodeTreeView());
-
-// Tree Item
-
-class TreeItem extends FoundationTreeItem {}
-
-const vsCodeTreeItem = TreeItem.compose<TreeItemOptions, typeof TreeItem>({
-    baseName: 'tree-item',
-    baseClass: FoundationTreeItem,
-    template: treeItemTemplate,
-    styles: treeItemStyles,
-    expandCollapseGlyph: `
-        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="expand-collapse-glyph">
-            <path d="M5 12.3a1 1 0 0 0 1.6.8L11 8.8a1.5 1.5 0 0 0 0-2.3L6.6 2.2A1 1 0 0 0 5 3v9.3Z"/>
-        </svg>
-    `,
-});
-
-export const VSCodeTreeItem = wrap(vsCodeTreeItem(), {
-    events: {
-        onExpandedChanged: 'expanded-change'
-    }
-});
+    return React.createElement('vscode-tree-item', {
+        expanded,
+        id,
+        onClick,
+        onKeyDown,
+        ...props
+    }, children);
+};
 

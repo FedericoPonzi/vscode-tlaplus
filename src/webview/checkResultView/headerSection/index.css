@@ -51,3 +51,106 @@
 .timeInfo {
     margin-top: 1em;
 }
+
+/* Styling for new web components using CSS custom properties and part selectors */
+.header-title vscode-button {
+    margin-right: 0.5em;
+    --button-padding-horizontal: 12px;
+    --button-padding-vertical: 6px;
+    --button-border-radius: 2px;
+    --button-font-size: 13px;
+    --button-font-weight: 400;
+    --button-line-height: 18px;
+}
+
+.header-title vscode-button[appearance="primary"] {
+    --button-background: var(--vscode-button-background);
+    --button-foreground: var(--vscode-button-foreground);
+    --button-border: var(--vscode-button-border, transparent);
+    --button-hover-background: var(--vscode-button-hoverBackground);
+}
+
+.header-title vscode-button[appearance="secondary"] {
+    --button-background: var(--vscode-button-secondaryBackground);
+    --button-foreground: var(--vscode-button-secondaryForeground);
+    --button-border: var(--vscode-button-border, transparent);
+    --button-hover-background: var(--vscode-button-secondaryHoverBackground);
+}
+
+.header-title vscode-button:disabled {
+    --button-background: var(--vscode-button-background);
+    --button-foreground: var(--vscode-disabledForeground);
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.header-title vscode-button::part(control) {
+    background: var(--button-background);
+    color: var(--button-foreground);
+    border: 1px solid var(--button-border);
+    padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    line-height: var(--button-line-height);
+    border-radius: var(--button-border-radius);
+    font-family: var(--vscode-font-family);
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.header-title vscode-button::part(control):hover:not(:disabled) {
+    background: var(--button-hover-background);
+}
+
+.header-title vscode-button::part(control):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: 2px;
+}
+
+.header-title vscode-button::part(control):active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+vscode-button:last-child {
+    margin-right: 0;
+}
+
+vscode-divider {
+    margin: 1em 0;
+    --divider-border: var(--vscode-panel-border);
+}
+
+vscode-divider::part(root) {
+    border-top: 1px solid var(--divider-border);
+    height: 1px;
+    margin: 0;
+}
+
+vscode-link {
+    cursor: pointer;
+    --link-foreground: var(--vscode-textLink-foreground);
+    --link-active-foreground: var(--vscode-textLink-activeForeground);
+    --link-hover-foreground: var(--vscode-textLink-foreground);
+}
+
+vscode-link::part(control) {
+    color: var(--link-foreground);
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+}
+
+vscode-link::part(control):hover {
+    color: var(--link-hover-foreground);
+    text-decoration: underline;
+}
+
+vscode-link::part(control):active {
+    color: var(--link-active-foreground);
+}
+
+vscode-link::part(control):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: 2px;
+}

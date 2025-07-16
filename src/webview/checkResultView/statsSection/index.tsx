@@ -1,4 +1,4 @@
-import { VSCodeDivider, VSCodePanels } from '@vscode/webview-ui-toolkit/react';
+/// <reference path="../../vscode-elements.d.ts" />
 import * as React from 'react';
 import { ModelCheckResult } from '../../../model/check';
 import { EmptyLine } from '../common';
@@ -11,12 +11,12 @@ interface StatsSectionI {checkResult: ModelCheckResult}
 export const StatsSection = React.memo(({checkResult}: StatsSectionI) => {
     return (
         <section>
-            <VSCodePanels>
+            <vscode-panels>
                 <StatesStats stats={checkResult.initialStatesStat}/>
                 {checkResult.coverageStat.length > 0 && <CoverageStats stats={checkResult.coverageStat}/>}
-            </VSCodePanels>
+            </vscode-panels>
             <EmptyLine/>
-            <VSCodeDivider/>
+            <vscode-divider/>
         </section>
     );
 });

@@ -1,6 +1,9 @@
 .coverage-view-container {
     height: 100vh;
     overflow: auto;
+    background-color: var(--vscode-editor-background);
+    color: var(--vscode-foreground);
+    font-family: var(--vscode-font-family);
 }
 
 .loading {
@@ -10,6 +13,22 @@
     min-height: 60vh;
     font-size: 14px;
     color: var(--vscode-descriptionForeground);
+    flex-direction: column;
+    gap: 16px;
+}
+
+.loading .spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--vscode-progressBar-background);
+    border-top: 2px solid var(--vscode-progressBar-foreground);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .error {
@@ -28,4 +47,45 @@
     padding: 12px 16px;
     border-radius: 3px;
     max-width: 500px;
+    font-family: var(--vscode-font-family);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .coverage-view-container {
+        font-size: 12px;
+    }
+    
+    .error {
+        padding: 16px;
+    }
+    
+    .error p {
+        max-width: 90%;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .loading {
+        min-height: 40vh;
+        font-size: 12px;
+    }
+    
+    .error {
+        min-height: 40vh;
+        padding: 12px;
+    }
+}
+
+/* High contrast theme adjustments */
+.vscode-high-contrast .loading {
+    border: 1px solid var(--vscode-contrastBorder);
+    background-color: var(--vscode-editor-background);
+}
+
+.vscode-high-contrast .error p {
+    border-width: 2px;
 }

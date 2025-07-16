@@ -68,30 +68,44 @@
     margin-top: 8px;
 }
 
-.vscode-button {
-    background-color: var(--vscode-button-background);
-    color: var(--vscode-button-foreground);
-    border: 1px solid var(--vscode-button-border, transparent);
-    padding: 4px 14px;
-    font-size: 13px;
-    line-height: 18px;
-    border-radius: 2px;
+/* Button styling for vscode-elements */
+vscode-button {
+    --button-background: var(--vscode-button-background);
+    --button-foreground: var(--vscode-button-foreground);
+    --button-border: var(--vscode-button-border, transparent);
+    --button-hover-background: var(--vscode-button-hoverBackground);
+    --button-padding-horizontal: 14px;
+    --button-padding-vertical: 4px;
+    --button-border-radius: 2px;
+    --button-font-size: 13px;
+    --button-font-weight: 400;
+    --button-line-height: 18px;
+}
+
+vscode-button::part(control) {
+    background-color: var(--button-background);
+    color: var(--button-foreground);
+    border: 1px solid var(--button-border);
+    padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+    font-size: var(--button-font-size);
+    line-height: var(--button-line-height);
+    border-radius: var(--button-border-radius);
     cursor: pointer;
     font-family: var(--vscode-font-family);
-    font-weight: 400;
+    font-weight: var(--button-font-weight);
     outline: none;
     transition: background-color 0.1s ease-in-out;
 }
 
-.vscode-button:hover {
-    background-color: var(--vscode-button-hoverBackground);
+vscode-button::part(control):hover {
+    background-color: var(--button-hover-background);
 }
 
-.vscode-button:focus {
+vscode-button::part(control):focus {
     outline: 1px solid var(--vscode-focusBorder);
     outline-offset: 2px;
 }
 
-.vscode-button:active {
+vscode-button::part(control):active {
     transform: scale(0.98);
 }

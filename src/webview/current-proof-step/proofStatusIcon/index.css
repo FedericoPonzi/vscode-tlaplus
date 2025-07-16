@@ -2,4 +2,29 @@
     height: 14px;
     width: 14px;
     vertical-align: -15%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .proof-state-icon {
+        height: 12px;
+        width: 12px;
+        vertical-align: -10%;
+    }
+}
+
+@media (max-width: 480px) {
+    .proof-state-icon {
+        height: 10px;
+        width: 10px;
+        vertical-align: -5%;
+    }
+}
+
+/* High contrast theme adjustments */
+.vscode-high-contrast .proof-state-icon {
+    border: 1px solid var(--vscode-contrastBorder);
+    border-radius: 2px;
 }

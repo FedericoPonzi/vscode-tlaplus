@@ -15,3 +15,174 @@
 .coverage-zero {
     background: var(--vscode-inputValidation-warningBackground);
 }
+
+/* Panel component styling for stats section */
+vscode-panels {
+    --panels-background: transparent;
+    --panels-foreground: var(--vscode-foreground);
+    --panels-border: var(--vscode-panel-border);
+    --panels-margin: 0 0 1em 0;
+}
+
+vscode-panels::part(tablist) {
+    background: transparent;
+    border-bottom: 1px solid var(--panels-border);
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+vscode-panel-tab {
+    --tab-background: transparent;
+    --tab-foreground: var(--vscode-tab-inactiveForeground);
+    --tab-hover-background: var(--vscode-tab-hoverBackground);
+    --tab-active-background: transparent;
+    --tab-active-foreground: var(--vscode-tab-activeForeground);
+    --tab-border: var(--vscode-tab-border);
+    --tab-active-border: var(--vscode-tab-activeBorder);
+}
+
+vscode-panel-tab::part(tab) {
+    background: var(--tab-background);
+    color: var(--tab-foreground);
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: var(--vscode-font-family);
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s ease-in-out;
+}
+
+vscode-panel-tab::part(tab):hover {
+    background: var(--tab-hover-background);
+}
+
+vscode-panel-tab[aria-selected="true"]::part(tab) {
+    background: var(--tab-active-background);
+    color: var(--tab-active-foreground);
+    border-bottom-color: var(--tab-active-border);
+}
+
+vscode-panel-tab::part(tab):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: -1px;
+}
+
+vscode-panel-view {
+    --panel-background: transparent;
+    --panel-foreground: var(--vscode-foreground);
+    --panel-padding: 16px;
+}
+
+vscode-panel-view::part(content) {
+    background: var(--panel-background);
+    color: var(--panel-foreground);
+    padding: var(--panel-padding);
+}
+
+/* Data grid styling for vscode-elements */
+vscode-data-grid {
+    --data-grid-background: transparent;
+    --data-grid-foreground: var(--vscode-foreground);
+    --data-grid-border: var(--vscode-panel-border);
+    --data-grid-header-background: var(--vscode-list-headerBackground);
+    --data-grid-header-foreground: var(--vscode-list-headerForeground);
+    --data-grid-row-background: transparent;
+    --data-grid-row-hover-background: var(--vscode-list-hoverBackground);
+    --data-grid-cell-padding: 8px 12px;
+    --data-grid-font-size: 13px;
+}
+
+vscode-data-grid::part(root) {
+    background: var(--data-grid-background);
+    color: var(--data-grid-foreground);
+    border: 1px solid var(--data-grid-border);
+    font-family: var(--vscode-font-family);
+    font-size: var(--data-grid-font-size);
+    width: 100%;
+}
+
+vscode-data-grid-row {
+    --row-background: var(--data-grid-row-background);
+    --row-hover-background: var(--data-grid-row-hover-background);
+}
+
+vscode-data-grid-row::part(root) {
+    background: var(--row-background);
+    transition: background-color 0.1s ease-in-out;
+}
+
+vscode-data-grid-row:hover::part(root) {
+    background: var(--row-hover-background);
+}
+
+vscode-data-grid-row[row-type="header"]::part(root) {
+    background: var(--data-grid-header-background);
+    color: var(--data-grid-header-foreground);
+    font-weight: 600;
+}
+
+vscode-data-grid-cell {
+    --cell-background: transparent;
+    --cell-foreground: inherit;
+    --cell-padding: var(--data-grid-cell-padding);
+    --cell-border: var(--vscode-panel-border);
+}
+
+vscode-data-grid-cell::part(root) {
+    background: var(--cell-background);
+    color: var(--cell-foreground);
+    padding: var(--cell-padding);
+    border-right: 1px solid var(--cell-border);
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+}
+
+vscode-data-grid-cell:last-child::part(root) {
+    border-right: none;
+}
+
+vscode-data-grid-cell[cell-type="columnheader"]::part(root) {
+    background: var(--data-grid-header-background);
+    color: var(--data-grid-header-foreground);
+    font-weight: 600;
+    border-bottom: 1px solid var(--cell-border);
+}
+
+/* Divider styling for stats section */
+vscode-divider {
+    margin: 1em 0;
+    --divider-border: var(--vscode-panel-border);
+}
+
+vscode-divider::part(root) {
+    border-top: 1px solid var(--divider-border);
+    height: 1px;
+    margin: 0;
+}
+
+/* Responsive design for data grids */
+@media (max-width: 768px) {
+    vscode-data-grid {
+        --data-grid-cell-padding: 6px 8px;
+        --data-grid-font-size: 12px;
+    }
+    
+    .hidden-overflow-ellipsis {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    vscode-data-grid {
+        --data-grid-cell-padding: 4px 6px;
+        --data-grid-font-size: 11px;
+    }
+    
+    .hidden-overflow-ellipsis {
+        max-width: 80px;
+    }
+}

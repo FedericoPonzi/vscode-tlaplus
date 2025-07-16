@@ -116,3 +116,202 @@ code {
     color: inherit; /* Reset the text color */
     background: inherit; /* Remove the gray-ish background */
 }
+
+/* Panel component styling for vscode-elements */
+vscode-panels {
+    --panels-background: transparent;
+    --panels-foreground: var(--vscode-foreground);
+    --panels-border: var(--vscode-panel-border);
+}
+
+vscode-panels::part(tablist) {
+    background: transparent;
+    border-bottom: 1px solid var(--panels-border);
+    padding: 0;
+    margin: 0;
+}
+
+vscode-panel-tab {
+    --tab-background: transparent;
+    --tab-foreground: var(--vscode-tab-inactiveForeground);
+    --tab-hover-background: var(--vscode-tab-hoverBackground);
+    --tab-active-background: transparent;
+    --tab-active-foreground: var(--vscode-tab-activeForeground);
+    --tab-border: var(--vscode-tab-border);
+    --tab-active-border: var(--vscode-tab-activeBorder);
+}
+
+vscode-panel-tab::part(tab) {
+    background: var(--tab-background);
+    color: var(--tab-foreground);
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: var(--vscode-font-family);
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.1s ease-in-out;
+}
+
+vscode-panel-tab::part(tab):hover {
+    background: var(--tab-hover-background);
+}
+
+vscode-panel-tab[aria-selected="true"]::part(tab) {
+    background: var(--tab-active-background);
+    color: var(--tab-active-foreground);
+    border-bottom-color: var(--tab-active-border);
+}
+
+vscode-panel-tab::part(tab):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: -1px;
+}
+
+vscode-panel-view {
+    --panel-background: transparent;
+    --panel-foreground: var(--vscode-foreground);
+    --panel-padding: 16px;
+}
+
+vscode-panel-view::part(content) {
+    background: var(--panel-background);
+    color: var(--panel-foreground);
+    padding: var(--panel-padding);
+}
+
+/* Text field styling for vscode-elements */
+vscode-text-field {
+    --text-field-background: var(--vscode-input-background);
+    --text-field-foreground: var(--vscode-input-foreground);
+    --text-field-border: var(--vscode-input-border);
+    --text-field-focus-border: var(--vscode-focusBorder);
+    --text-field-placeholder-foreground: var(--vscode-input-placeholderForeground);
+    --text-field-padding: 4px 8px;
+    --text-field-font-size: 13px;
+    --text-field-border-radius: 2px;
+}
+
+vscode-text-field::part(root) {
+    background: var(--text-field-background);
+    color: var(--text-field-foreground);
+    border: 1px solid var(--text-field-border);
+    border-radius: var(--text-field-border-radius);
+    font-size: var(--text-field-font-size);
+    font-family: var(--vscode-font-family);
+    outline: none;
+    transition: border-color 0.1s ease-in-out;
+}
+
+vscode-text-field::part(control) {
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: var(--text-field-padding);
+    font-size: inherit;
+    font-family: inherit;
+    outline: none;
+}
+
+vscode-text-field::part(control)::placeholder {
+    color: var(--text-field-placeholder-foreground);
+}
+
+vscode-text-field:focus-within::part(root) {
+    border-color: var(--text-field-focus-border);
+}
+
+/* Tree component styling for vscode-elements */
+vscode-tree-view {
+    --tree-view-background: transparent;
+    --tree-view-foreground: var(--vscode-foreground);
+    --tree-view-border: transparent;
+}
+
+vscode-tree-view::part(root) {
+    background: var(--tree-view-background);
+    color: var(--tree-view-foreground);
+    border: 1px solid var(--tree-view-border);
+    font-family: var(--vscode-font-family);
+    font-size: 13px;
+}
+
+vscode-tree-item {
+    --tree-item-background: transparent;
+    --tree-item-foreground: var(--vscode-foreground);
+    --tree-item-hover-background: var(--vscode-list-hoverBackground);
+    --tree-item-selected-background: var(--vscode-list-activeSelectionBackground);
+    --tree-item-selected-foreground: var(--vscode-list-activeSelectionForeground);
+    --tree-item-focus-background: var(--vscode-list-focusBackground);
+    --tree-item-focus-foreground: var(--vscode-list-focusForeground);
+    --tree-item-indent: 16px;
+}
+
+vscode-tree-item::part(positioning-region) {
+    background: var(--tree-item-background);
+    color: var(--tree-item-foreground);
+    padding: 2px 4px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+
+vscode-tree-item::part(content-region) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    height: fit-content;
+    min-height: 22px;
+}
+
+vscode-tree-item::part(expand-collapse-button) {
+    background: transparent;
+    color: var(--tree-item-foreground);
+    border: none;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin-right: 4px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+vscode-tree-item::part(expand-collapse-button):focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: -1px;
+}
+
+vscode-tree-item:hover::part(positioning-region) {
+    background: var(--tree-item-hover-background);
+}
+
+vscode-tree-item[selected]::part(positioning-region) {
+    background: var(--tree-item-selected-background);
+    color: var(--tree-item-selected-foreground);
+}
+
+vscode-tree-item[aria-current="true"]::part(positioning-region) {
+    background: var(--tree-item-focus-background);
+    color: var(--tree-item-focus-foreground);
+}
+
+/* Responsive design for tree items */
+@media (max-width: 600px) {
+    vscode-tree-item {
+        --tree-item-indent: 12px;
+    }
+    
+    .var-block {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+    
+    .var-name,
+    .var-value {
+        white-space: normal;
+        word-break: break-word;
+    }
+}

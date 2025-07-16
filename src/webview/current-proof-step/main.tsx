@@ -1,12 +1,15 @@
+/// <reference path="../vscode-elements.d.ts" />
+
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { TlapsConfigChanged, TlapsProofObligationState, TlapsProofStepDetails } from '../../model/tlaps.ts';
 import { Obligation } from './obligation/index.tsx';
 import { StepCounts } from './stepCounts/index.tsx';
-import { VSCodeLink } from '@vscode/webview-ui-toolkit/react/index';
 import { vscodeClient } from './vscode_client.ts';
 import { ProofStatusIcon } from './proofStatusIcon/index.tsx';
 import '@vscode/codicons/dist/codicon.css';
+import '@vscode-elements/elements/dist/bundled';
+import '../common/vscode-elements-theme.css';
 
 interface CurrentProofStepViewAppI {
     config: TlapsConfigChanged | null,
@@ -72,11 +75,11 @@ const CurrentProofStepViewApp = React.memo(({ config, details }: CurrentProofSte
                     <b>{stepKind(details.kind)}</b>&nbsp;
                     <ProofStatusIcon proofStatus={details.status}></ProofStatusIcon>
                     &nbsp;at&nbsp;
-                    <VSCodeLink onClick={() => vscodeClient.showLocation(details.location)}>
+                    <vscode-link onClick={() => vscodeClient.showLocation(details.location)}>
                         {details.location.uri.split(/\/|\\/).pop()}&nbsp;
                         {details.location.range.start.line + 1}:
                         {details.location.range.start.character + 1}
-                    </VSCodeLink>
+                    </vscode-link>
                 </div>
                 <StepCounts label={subLabel} counts={details.sub_count}></StepCounts>
             </section>

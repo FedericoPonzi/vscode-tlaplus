@@ -1,11 +1,4 @@
-import { Panels } from '@vscode/webview-ui-toolkit';
-import {
-    VSCodeDivider,
-    VSCodeLink,
-    VSCodePanelTab,
-    VSCodePanelView,
-    VSCodePanels
-} from '@vscode/webview-ui-toolkit/react';
+/// <reference path="../../vscode-elements.d.ts" />
 import * as React from 'react';
 import { ErrorInfo, MessageLine, ModelCheckResult, OutputLine, WarningInfo } from '../../../model/check';
 import { CodePositionLink } from '../common';
@@ -21,11 +14,11 @@ export const OutputSection = React.memo(({checkResult}: OutputSectionI) => {
 
     return (
         <section>
-            <VSCodePanels id="output-panels">
+            <vscode-panels id="output-panels">
                 {!emptyErrors(checkResult) &&
                     <>
-                        <VSCodePanelTab id="output-tab-1"> Errors </VSCodePanelTab>
-                        <VSCodePanelView id="output-view-1" className="flex-direction-column">
+                        <vscode-panel-tab id="output-tab-1"> Errors </vscode-panel-tab>
+                        <vscode-panel-view id="output-view-1" className="flex-direction-column">
                             {checkResult.errors.map((error: ErrorInfo, errorId: number) => (
                                 <div key={errorId} className="margin-0">
                                     {error.lines.map((v, index) => (
@@ -34,20 +27,20 @@ export const OutputSection = React.memo(({checkResult}: OutputSectionI) => {
                                     <ErrorLink error={error} index={errorId}/>
                                 </div>))
                             }
-                        </VSCodePanelView>
+                        </vscode-panel-view>
                     </>}
                 {!emptyOutputLines(checkResult) &&
                     <>
-                        <VSCodePanelTab id="output-tab-2"> Output </VSCodePanelTab>
-                        <VSCodePanelView id="output-view-2" className="flex-direction-column">
+                        <vscode-panel-tab id="output-tab-2"> Output </vscode-panel-tab>
+                        <vscode-panel-view id="output-view-2" className="flex-direction-column">
                             {checkResult.outputLines.map((v, index) => <OutputLineElement key={index} line={v}/>)}
-                        </VSCodePanelView>
+                        </vscode-panel-view>
                     </>}
 
                 {!emptyWarnings(checkResult) &&
                     <>
-                        <VSCodePanelTab id="output-tab-3"> Warnings </VSCodePanelTab>
-                        <VSCodePanelView id="output-view-3" className="flex-direction-column">
+                        <vscode-panel-tab id="output-tab-3"> Warnings </vscode-panel-tab>
+                        <vscode-panel-view id="output-view-3" className="flex-direction-column">
                             {checkResult.warnings.map((warning: WarningInfo, warningId: number) => (
                                 <p key={warningId} className="margin-0">
                                     {warning.lines.map((v, index) =>(
@@ -55,10 +48,10 @@ export const OutputSection = React.memo(({checkResult}: OutputSectionI) => {
                                             key={index} message={v}/>))}
                                 </p>))
                             }
-                        </VSCodePanelView>
+                        </vscode-panel-view>
                     </>}
-            </VSCodePanels>
-            <VSCodeDivider/>
+            </vscode-panels>
+            <vscode-divider/>
         </section>
     );
 });
@@ -84,11 +77,11 @@ const ErrorLink = React.memo(({error, index}: ErrorLinkI) => {
     }
 
     const switchTab = () => {
-        const panels = document.getElementById('error-trace-panels') as Panels;
+        const panels = document.getElementById('error-trace-panels') as any;
         panels.activeid = 'error-trace-tab-' + index;
     };
     return (
-        <VSCodeLink onClick={switchTab} href="#error-trace-panels"> Show error trace </VSCodeLink>
+        <vscode-link onClick={switchTab} href="#error-trace-panels"> Show error trace </vscode-link>
     );
 });
 

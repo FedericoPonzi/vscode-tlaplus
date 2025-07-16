@@ -7,6 +7,8 @@ import { CoverageFileDeleted } from './coverageView/coverageFileDeleted';
 import { vscode } from './coverageView/vscode';
 
 import '@vscode/codicons/dist/codicon.css';
+import '@vscode-elements/elements/dist/bundled';
+import './common/vscode-elements-theme.css';
 import './coverageView/index.css';
 
 type ViewState =

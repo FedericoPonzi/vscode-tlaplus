@@ -3,12 +3,19 @@
     height: calc(100vh - 200px); /* Adjust based on header height */
     display: flex;
     flex-direction: column;
+    background-color: var(--vscode-editor-background);
+    color: var(--vscode-foreground);
+    font-family: var(--vscode-font-family);
 }
 
 .chart-wrapper {
     flex: 1;
     position: relative;
     min-height: 400px;
+    background-color: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .chart-info {
@@ -17,6 +24,7 @@
     background-color: var(--vscode-textBlockQuote-background);
     border-left: 3px solid var(--vscode-textBlockQuote-border);
     border-radius: 3px;
+    font-family: var(--vscode-font-family);
 }
 
 .info-text {
@@ -26,11 +34,13 @@
     display: flex;
     align-items: flex-start;
     gap: 8px;
+    line-height: 1.4;
 }
 
 .info-text .codicon {
     flex-shrink: 0;
     margin-top: 2px;
+    color: var(--vscode-symbolIcon-colorForeground);
 }
 
 /* Loading state */
@@ -41,11 +51,27 @@
     justify-content: center;
     height: 100vh;
     gap: 16px;
+    background-color: var(--vscode-editor-background);
 }
 
 .loading p {
     color: var(--vscode-descriptionForeground);
     font-size: 14px;
+    font-family: var(--vscode-font-family);
+}
+
+.loading .spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--vscode-progressBar-background);
+    border-top: 2px solid var(--vscode-progressBar-foreground);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Container styles */
@@ -53,4 +79,83 @@
     height: 100vh;
     overflow: auto;
     background-color: var(--vscode-editor-background);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .coverage-chart-container {
+        padding: 12px;
+        height: calc(100vh - 180px);
+    }
+    
+    .chart-wrapper {
+        min-height: 300px;
+    }
+    
+    .info-text {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .coverage-chart-container {
+        padding: 8px;
+        height: calc(100vh - 160px);
+    }
+    
+    .chart-wrapper {
+        min-height: 250px;
+    }
+    
+    .chart-info {
+        padding: 8px;
+        margin-top: 12px;
+    }
+    
+    .info-text {
+        font-size: 11px;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .info-text .codicon {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .coverage-chart-container {
+        padding: 4px;
+        height: calc(100vh - 140px);
+    }
+    
+    .chart-wrapper {
+        min-height: 200px;
+    }
+    
+    .loading {
+        height: 60vh;
+        gap: 12px;
+    }
+    
+    .loading p {
+        font-size: 12px;
+        text-align: center;
+        padding: 0 16px;
+    }
+}
+
+/* High contrast theme adjustments */
+.vscode-high-contrast .chart-wrapper {
+    border-width: 2px;
+    border-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast .chart-info {
+    border-left-width: 4px;
+    border-color: var(--vscode-contrastBorder);
+}
+
+.vscode-high-contrast .loading {
+    border: 1px solid var(--vscode-contrastBorder);
 }
